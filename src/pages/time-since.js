@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import moment from 'moment'
+import useInterval from '../hooks/useInterval'
 
 const secondsDiff = (a, b) => moment.duration(a.diff(b)).as('seconds')
 
@@ -7,18 +8,12 @@ const TimeSince = ({ date }) => {
   const [currentDate, setCurrentDate] = useState(moment())
   const [timeSinceDate, setTimeSinceDate] = useState(secondsDiff(date, currentDate))
 
-  useEffect(() => {
-    console.log('Setting up interval')
-    const timer = setInterval(() => {
-      console.log('Updating currentDate')
-      setCurrentDate(moment())
-    }, 1000)
+  const updateDate = useCallback(() => {
+    console.log('Updating currentDate')
+    setCurrentDate(moment())
+  }, [setCurrentDate])
 
-    return () => {
-      console.log('Clearing interval')
-      clearInterval(timer)
-    }
-  }, [])
+  useInterval(updateDate, 1000)
 
   useEffect(() => {
     console.log('Updating timeSinceDate')

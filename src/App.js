@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 import TimeSince from './pages/time-since'
 import DataFetching from './pages/data-fetching'
+import useInterval from './hooks/useInterval'
 import moment from 'moment'
 
 function App () {
   const [startOfMinute, setStartOfMinute] = useState(moment().startOf('minute'))
 
-  useEffect(() => {
-    setInterval(() => {
-      setStartOfMinute(moment().startOf('minute'))
-    }, 60 * 1000)
-  }, [])
+  useInterval(useCallback(() => {
+    setStartOfMinute(moment().startOf('minute'))
+  }), 60 * 1000)
 
   return (
     <Router>
