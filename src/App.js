@@ -13,7 +13,7 @@ function App () {
 
   useInterval(useCallback(() => {
     setStartOfMinute(moment().startOf('minute'))
-  }), 60 * 1000)
+  }, [setStartOfMinute]), 60 * 1000)
 
   return (
     <Router>
