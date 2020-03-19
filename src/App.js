@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 import TimeSince from './pages/time-since'
 import DataFetching from './pages/data-fetching'
+import MouseMove from './pages/mouse-move'
 import useInterval from './hooks/useInterval'
 import moment from 'moment'
 
@@ -17,13 +18,15 @@ function App () {
     <Router>
       <div className='App'>
         <nav>
-          <Link to='/time-since'>Set Interval Demo</Link>
-          <Link to='/data-fetching'>Fetching Data Demo</Link>
+          <div><Link to='/time-since'>Set Interval Demo</Link></div>
+          <div><Link to='/data-fetching'>Fetching Data Demo</Link></div>
+          <div><Link to='/mouse-move'>Mouse Move Demo</Link></div>
         </nav>
         <main>
           <Switch>
             <Route path='/time-since' render={() => <TimeSince date={startOfMinute} />} />
             <Route path='/data-fetching' component={DataFetching} />
+            <Route path='/mouse-move' component={MouseMove} />
           </Switch>
         </main>
       </div>

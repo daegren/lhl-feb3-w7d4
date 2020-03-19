@@ -1,0 +1,6 @@
+.mouse-box {
+  width: 90vw;
+  height: 80vh;
+  border: 1px solid black;
+  margin: 0 auto;
+}
